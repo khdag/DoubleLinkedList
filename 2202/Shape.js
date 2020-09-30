@@ -8,11 +8,12 @@ function rectangle(height , width, displacement){
         for(let i = 0; i < height; i++){
             
             //Add line
-            line ="\n";
+            let line ="\n";
 
             //Create an offset
             let offset = "";
-            for(let o =0; o<=displacement;o++) offset += " ";
+            for(let o =0; o<=displacement;o++) 
+            offset += " ";
 
             line+=offset;
 
