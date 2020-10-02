@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-    public class DoubleLinkedList <A> {
+public class DoubleLinkedList <A> {
 
     //change, moe was here
     private static class Node<A>{
@@ -21,14 +21,14 @@
         public A getInput(){
             return Input;
         }
-        
+
         public void setNext(Node<A> nextNode){
             this.nextNode = nextNode;
         }
         public Node<A> getNext(){
             return nextNode;
         }
-        
+
         public void setprev(Node<A> prevNode){
             this.prevNode = prevNode;
         }
@@ -36,28 +36,28 @@
             return prevNode;
         }
     }
-    
+
     int size = 0;
     private Node<A> head;
     private Node<A> tail;
-    
-    
+
+
     public boolean isEmpty(){
         return size == 0;
     }
-    
+
     public void addFirst(A element){
         Node<A> newNode = new Node<>(element, head , null); // 
-        
+
         if(isEmpty()) tail = newNode;
-        if(size != 0) head.setprev(newNode); 
+        if(size != 0) head.setprev(newNode);
         head = newNode;
         size++;
     }
-    
+
     public void addLast(A element){
         Node<A> newNode = new Node<>(element, null, tail);
-        
+
         if(isEmpty()) head = newNode;
         else {
             tail.setNext(newNode);
@@ -67,7 +67,30 @@
         size++;
     }
 
-    
+    public A remove(Node<A> node){
+        Node<A> predecessor = node.getprev();
+        Node<A> succesor = node.getNext();
+        predecessor.setNext(succesor);
+        succesor.setprev(predecessor);
+        size--;
+        return node.getInput();
+    }
+
+    public A removeFirst(){
+        if(isEmpty()){
+            return null;
+        }
+        return remove(head.getNext());
+    }
+
+    public A removeLast(){
+        if (isEmpty()){
+            return null;
+        }
+        return remove(tail.getprev());
+    }
+
+
     public void printAll()
     {
         Node<A> currentNode = head;
@@ -84,9 +107,9 @@
             System.out.println(currentNode.getInput());
             currentNode = currentNode.getprev();
         }
-    } 
+    }
 }
-	//doesnt work
+//doesnt work
   /*  public Node<A> deleteFirst()
 	    {
 	        Node temp = head;
